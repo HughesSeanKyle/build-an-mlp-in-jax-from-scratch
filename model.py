@@ -94,8 +94,17 @@ def softmax_probabilities(logits: jax.Array) -> jax.Array:
     """Converts a logits array into standard probabilities along the last axis."""
     return jax.nn.softmax(logits, axis=-1)
 
-# Step 12 - mlp_forward (not yet solved)
-# TODO: implement
+# Step 12 - mlp_forward
+def mlp_forward(params: list, x: jax.Array) -> jax.Array:
+    """Runs an input batch through the MLP layers up to raw output logits."""
+    activation = x
+    # Forward through all hidden layers with ReLU
+    for layer_param in params[:-1]:
+        linear_out = linear_forward(activation, layer_param)
+        activation = relu_activation(linear_out)
+    
+    # Final layer only uses the affine transformation (no activation)
+    return linear_forward(activation, params[-1])
 
 # Step 13 - log_softmax_logits (not yet solved)
 # TODO: implement
