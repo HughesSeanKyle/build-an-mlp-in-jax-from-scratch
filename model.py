@@ -126,8 +126,14 @@ def classification_accuracy(logits: jax.Array, labels: jax.Array) -> jax.Array:
     predictions = jnp.argmax(logits, axis=-1)
     return jnp.mean(predictions == labels)
 
-# Step 16 - loss_fn_of_params (not yet solved)
-# TODO: implement
+# Step 16 - loss_fn_of_params
+import jax
+import jax.numpy as jnp
+
+def loss_fn_of_params(params: list, x: jax.Array, one_hot_targets: jax.Array) -> jax.Array:
+    """A target-first function wrapper evaluating scalar loss given parameters."""
+    logits = mlp_forward(params, x)
+    return cross_entropy_loss(logits, one_hot_targets)
 
 # Step 17 - compute_param_grads (not yet solved)
 # TODO: implement
