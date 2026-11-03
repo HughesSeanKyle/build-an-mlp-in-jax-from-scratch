@@ -87,8 +87,12 @@ def relu_activation(x: jax.Array) -> jax.Array:
     """Applies the Rectified Linear Unit activation function elementwise."""
     return jnp.maximum(0, x)
 
-# Step 11 - softmax_probabilities (not yet solved)
-# TODO: implement
+# Step 11 - softmax_probabilities
+import jax.numpy as jnp
+
+def softmax_probabilities(logits: jax.Array) -> jax.Array:
+    """Converts a logits array into standard probabilities along the last axis."""
+    return jax.nn.softmax(logits, axis=-1)
 
 # Step 12 - mlp_forward (not yet solved)
 # TODO: implement
