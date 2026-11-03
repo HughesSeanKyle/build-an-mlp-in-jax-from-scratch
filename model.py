@@ -106,8 +106,10 @@ def mlp_forward(params: list, x: jax.Array) -> jax.Array:
     # Final layer only uses the affine transformation (no activation)
     return linear_forward(activation, params[-1])
 
-# Step 13 - log_softmax_logits (not yet solved)
-# TODO: implement
+# Step 13 - log_softmax_logits
+def log_softmax_logits(logits: jax.Array) -> jax.Array:
+    """Returns a stable log of the softmax distribution along the last axis."""
+    return jax.nn.log_softmax(logits, axis=-1)
 
 # Step 14 - cross_entropy_loss (not yet solved)
 # TODO: implement
