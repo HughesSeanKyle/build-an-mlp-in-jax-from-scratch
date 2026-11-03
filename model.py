@@ -144,8 +144,19 @@ def compute_param_grads(params: list, x: jax.Array, one_hot_targets: jax.Array) 
     grad_fn = jax.grad(loss_fn_of_params, argnums=0)
     return grad_fn(params, x, one_hot_targets)
 
-# Step 18 - sgd_update_params (not yet solved)
-# TODO: implement
+# Step 18 - sgd_update_params
+import jax
+import jax.numpy as jnp
+
+def sgd_update_params(params: list, grads: list, learning_rate: float) -> list:
+    """Applies a single vanilla functional SGD step across all parameters."""
+    return [
+        {
+            'W': layer_p['W'] - learning_rate * layer_g['W'],
+            'b': layer_p['b'] - learning_rate * layer_g['b']
+        }
+        for layer_p, layer_g in zip(params, grads)
+    ]
 
 # Step 19 - training_step (not yet solved)
 # TODO: implement
