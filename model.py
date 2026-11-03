@@ -62,8 +62,17 @@ def init_linear_layer(key: jax.Array, in_dim: int, out_dim: int, scale=0.1) -> d
     b = jnp.zeros((out_dim,))
     return {'W': W, 'b': b}
 
-# Step 8 - init_mlp_params (not yet solved)
-# TODO: implement
+# Step 8 - init_mlp_params
+def init_mlp_params(key: jax.Array, layer_sizes: list, scale=0.1) -> list:
+    """Builds a full list of initialized layer parameter dicts for an MLP."""
+    num_layers = len(layer_sizes) - 1
+    keys = split_prng_key(key, num_layers)
+    
+    params = []
+    for i in range(num_layers):
+        layer_param = init_linear_layer(keys[i], layer_sizes[i], layer_sizes[i+1], scale=scale)
+        params.append(layer_param)
+    return params
 
 # Step 9 - linear_forward (not yet solved)
 # TODO: implement
