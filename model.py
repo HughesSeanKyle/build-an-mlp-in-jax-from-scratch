@@ -111,8 +111,12 @@ def log_softmax_logits(logits: jax.Array) -> jax.Array:
     """Returns a stable log of the softmax distribution along the last axis."""
     return jax.nn.log_softmax(logits, axis=-1)
 
-# Step 14 - cross_entropy_loss (not yet solved)
-# TODO: implement
+# Step 14 - cross_entropy_loss
+def cross_entropy_loss(logits: jax.Array, one_hot_targets: jax.Array) -> jax.Array:
+    """Computes the mean cross-entropy between predicted logits and targets."""
+    log_probs = log_softmax_logits(logits)
+    # Categorical cross entropy: mean of (-target * log_prob)
+    return -jnp.mean(jnp.sum(one_hot_targets * log_probs, axis=-1))
 
 # Step 15 - classification_accuracy (not yet solved)
 # TODO: implement
