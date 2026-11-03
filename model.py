@@ -118,8 +118,13 @@ def cross_entropy_loss(logits: jax.Array, one_hot_targets: jax.Array) -> jax.Arr
     # Categorical cross entropy: mean of (-target * log_prob)
     return -jnp.mean(jnp.sum(one_hot_targets * log_probs, axis=-1))
 
-# Step 15 - classification_accuracy (not yet solved)
-# TODO: implement
+# Step 15 - classification_accuracy
+import jax.numpy as jnp
+
+def classification_accuracy(logits: jax.Array, labels: jax.Array) -> jax.Array:
+    """Computes the fraction of correctly classified examples as a scalar float."""
+    predictions = jnp.argmax(logits, axis=-1)
+    return jnp.mean(predictions == labels)
 
 # Step 16 - loss_fn_of_params (not yet solved)
 # TODO: implement
