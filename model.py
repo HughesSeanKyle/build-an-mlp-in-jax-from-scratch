@@ -176,6 +176,9 @@ def train_mlp(params: list, x: jax.Array, one_hot_targets: jax.Array, learning_r
         params, _ = training_step(params, x, one_hot_targets, learning_rate)
     return params
 
-# Step 21 - predict_classes (not yet solved)
-# TODO: implement
+# Step 21 - predict_classes
+def predict_classes(params: list, x: jax.Array) -> jax.Array:
+    """Predicts discrete integer class indices for a batch of inputs."""
+    logits = mlp_forward(params, x)
+    return jnp.argmax(logits, axis=-1).astype(jnp.int32)
 
