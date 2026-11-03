@@ -30,8 +30,13 @@ def sample_normal_matrix(key: jax.Array, shape: tuple) -> jax.Array:
     """Draws a standard-normal sample of the requested shape using a PRNG key."""
     return jax.random.normal(key, shape)
 
-# Step 4 - sample_input_features (not yet solved)
-# TODO: implement
+# Step 4 - sample_input_features
+import jax
+import jax.numpy as jnp
+
+def sample_input_features(key: jax.Array, batch_size: int, num_features: int) -> jax.Array:
+    """Draws a batch of standard-normal feature vectors using sample_normal_matrix."""
+    return sample_normal_matrix(key, (batch_size, num_features))
 
 # Step 5 - assign_class_labels (not yet solved)
 # TODO: implement
