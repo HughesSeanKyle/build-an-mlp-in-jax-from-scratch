@@ -43,8 +43,10 @@ def assign_class_labels(inputs: jax.Array, num_classes: int) -> jax.Array:
     """Turns a feature matrix into discrete integer labels via an argmax rule."""
     return jnp.argmax(inputs[:, :num_classes], axis=1).astype(jnp.int32)
 
-# Step 6 - one_hot_encode_labels (not yet solved)
-# TODO: implement
+# Step 6 - one_hot_encode_labels
+def one_hot_encode_labels(labels: jax.Array, num_classes: int) -> jax.Array:
+    """Converts a 1-D array of integer class labels into a 2-D one-hot matrix."""
+    return jax.nn.one_hot(labels, num_classes)
 
 # Step 7 - init_linear_layer (not yet solved)
 # TODO: implement
