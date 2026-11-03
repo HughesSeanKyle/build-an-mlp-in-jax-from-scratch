@@ -22,8 +22,13 @@ def split_prng_key(key: jax.Array, num: int) -> jax.Array:
     """Splits a parent JAX PRNG key into num independent subkeys."""
     return jax.random.split(key, num)
 
-# Step 3 - sample_normal_matrix (not yet solved)
-# TODO: implement
+# Step 3 - sample_normal_matrix
+import jax
+import jax.numpy as jnp
+
+def sample_normal_matrix(key: jax.Array, shape: tuple) -> jax.Array:
+    """Draws a standard-normal sample of the requested shape using a PRNG key."""
+    return jax.random.normal(key, shape)
 
 # Step 4 - sample_input_features (not yet solved)
 # TODO: implement
