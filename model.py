@@ -158,8 +158,16 @@ def sgd_update_params(params: list, grads: list, learning_rate: float) -> list:
         for layer_p, layer_g in zip(params, grads)
     ]
 
-# Step 19 - training_step (not yet solved)
-# TODO: implement
+# Step 19 - training_step
+import jax
+import jax.numpy as jnp
+
+def training_step(params: list, x: jax.Array, one_hot_targets: jax.Array, learning_rate: float) -> tuple:
+    """Runs a unitary training pass, returning updated parameters and old loss."""
+    loss = loss_fn_of_params(params, x, one_hot_targets)
+    grads = compute_param_grads(params, x, one_hot_targets)
+    new_params = sgd_update_params(params, grads, learning_rate)
+    return new_params, loss
 
 # Step 20 - train_mlp (not yet solved)
 # TODO: implement
