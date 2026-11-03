@@ -169,8 +169,12 @@ def training_step(params: list, x: jax.Array, one_hot_targets: jax.Array, learni
     new_params = sgd_update_params(params, grads, learning_rate)
     return new_params, loss
 
-# Step 20 - train_mlp (not yet solved)
-# TODO: implement
+# Step 20 - train_mlp
+def train_mlp(params: list, x: jax.Array, one_hot_targets: jax.Array, learning_rate: float, num_epochs: int) -> list:
+    """Executes a full-batch training loop tracking parameters across epochs functionally."""
+    for _ in range(num_epochs):
+        params, _ = training_step(params, x, one_hot_targets, learning_rate)
+    return params
 
 # Step 21 - predict_classes (not yet solved)
 # TODO: implement
