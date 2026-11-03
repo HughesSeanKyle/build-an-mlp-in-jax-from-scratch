@@ -38,8 +38,10 @@ def sample_input_features(key: jax.Array, batch_size: int, num_features: int) ->
     """Draws a batch of standard-normal feature vectors using sample_normal_matrix."""
     return sample_normal_matrix(key, (batch_size, num_features))
 
-# Step 5 - assign_class_labels (not yet solved)
-# TODO: implement
+# Step 5 - assign_class_labels
+def assign_class_labels(inputs: jax.Array, num_classes: int) -> jax.Array:
+    """Turns a feature matrix into discrete integer labels via an argmax rule."""
+    return jnp.argmax(inputs[:, :num_classes], axis=1).astype(jnp.int32)
 
 # Step 6 - one_hot_encode_labels (not yet solved)
 # TODO: implement
