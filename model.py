@@ -74,8 +74,10 @@ def init_mlp_params(key: jax.Array, layer_sizes: list, scale=0.1) -> list:
         params.append(layer_param)
     return params
 
-# Step 9 - linear_forward (not yet solved)
-# TODO: implement
+# Step 9 - linear_forward
+def linear_forward(x: jax.Array, layer_params: dict) -> jax.Array:
+    """Performs a single affine transformation (x @ W + b) of a batch."""
+    return x @ layer_params['W'] + layer_params['b']
 
 # Step 10 - relu_activation (not yet solved)
 # TODO: implement
